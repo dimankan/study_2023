@@ -22,12 +22,17 @@ namespace StudyMvcAspNet5.Controllers
 		}
 
 
-
 		public IActionResult TestLink()
 		{
 			var nameFromConfig = _config.GetSection("Admin:Name");
 
 			return View();
+		}
+
+		public IActionResult PrintValue()
+		{
+			int value = 32342;
+			return View(value);
 		}
 
 		public IActionResult Index()
