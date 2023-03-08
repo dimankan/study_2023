@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using StudyMvcAspNet5.Models;
 using System;
@@ -12,10 +13,21 @@ namespace StudyMvcAspNet5.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly IConfiguration _config;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
 		{
 			_logger = logger;
+			_config= configuration;
+		}
+
+
+
+		public IActionResult TestLink()
+		{
+			var nameFromConfig = _config.GetSection("Admin:Name");
+
+			return View();
 		}
 
 		public IActionResult Index()
